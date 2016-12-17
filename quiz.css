@@ -1,0 +1,30 @@
+body {
+	background-color: rgba(0,0,0,.9);
+	font-family: 'Orbitron', sans-serif;
+ }
+
+#main-header {
+	text-align: center;
+	font-size: 80px;
+	letter-spacing: 9px;
+	color: white;
+	text-shadow: 10px 10px 20px rgba(255, 0, 0, 0.7); 
+}
+
+#main-header-container {
+	background-color: rgba(0,0,0,.8);
+}
+
+#wrapper {
+	font-weight: bolder;
+}
+
+.robot-input {
+	font-size: 30px;
+}
+
+.input-header {
+	font-size: 50px;
+	color: tomato;
+   text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
+}

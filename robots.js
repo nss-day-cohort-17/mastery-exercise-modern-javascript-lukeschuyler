@@ -9,8 +9,6 @@ Battle.Dome.RobotClass = function () {
 
 }
 
-
-
 Battle.Dome.Droid = function () {
 	this.name = "Droid"
 	this.healthBonus = 10;
@@ -21,9 +19,10 @@ Battle.Dome.Droid = function () {
 Battle.Dome.Droid.prototype = new Battle.Dome.RobotClass();
 
 
+
 Battle.Dome.Nozzel = function () {
 	this.name = "Nozzel"
-	this.healthBonus = 0;
+	this.healthBonus = 4;
 	this.strengthBonus = 0;
 	this.CPUBonus = 0;
 }
@@ -41,6 +40,9 @@ Battle.Dome.Booker = function () {
 	this.strengthBonus = 0;
 	this.CPUBonus = 0;
 }
+
+
+
 
 Battle.Dome.Brainstorm = function () {
 	this.name = "Brainstorm"
