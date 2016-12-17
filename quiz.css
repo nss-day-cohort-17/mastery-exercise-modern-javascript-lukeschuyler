@@ -24,8 +24,9 @@ body {
 }
 
 .input-header {
-	font-size: 50px;
-	color: tomato;
+   font-size: 50px;
+   letter-spacing: 2px;
+   color: tomato;
    text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
    padding-top: 6%;
    padding-bottom: 6%;
