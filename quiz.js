@@ -14,11 +14,16 @@ $(document).ready(function () {
 	$('#player-names').show('slow');
 })
 
-// CLICK EVENTS FOR OBJECT INFO ASSIGNING
+// CHECK IF FIELDS HAVE VALUE
 
-if ($('#robot1').val('') || $('#robot2').val('')) {
-	$('#choose-class').prop('disabled', true)
-}
+$('#choose-class').prop('disabled', true);
+$('.robot-input').keyup(function (e) {
+	if($('#robot1').val() != '' && $('#robot2').val() != '') {
+        $('#choose-class').prop('disabled', false);
+    }
+})
+
+// CLICK EVENTS FOR OBJECT INFO ASSIGNING
 
 $('#choose-class').click(function (e) {
 	newPlayerName = $('#robot1').val();
