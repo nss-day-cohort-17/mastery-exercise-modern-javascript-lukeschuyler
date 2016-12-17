@@ -41,3 +41,13 @@ body {
 	font-size: 50px;
 	width:400px;
  }
+
+ .robot-types {
+ 	font-size: 40px;
+ 	width: 400px;
+ }
+
+.type-row {
+	margin-left:6.2%;
+	margin-right: 8%;
+}

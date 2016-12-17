@@ -33,9 +33,19 @@ $('#choose-class').click(function (e) {
 	console.log(newPlayer.playerName + ' vs ' + enemyPlayer.playerName);
 })
 
-if ($('#robot1').val('') || $('#robot2').val('')) {
-	$('#choose-class').prop('disabled', true)
-}
+$('.robot-types').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    newPlayer.type = new Battle.Dome[newTypeText];
+    console.log(newPlayer)
+  })
+
+$('.class-button-group').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    newPlayer.class = new Battle.Dome[newTypeText];
+    console.log(newPlayer)
+  })
 
 // CLICK EVENTS FOR PAGE TRANSITIONS
 
@@ -51,18 +61,18 @@ $('#choose-robot').click(function (e){
 
 $('#droid-button').click(function (e) {
 	$('.android').hide();
-	$('.cyborg').hide();
+	$('.controller').hide();
 	$('.droid').show();
 })
 
-$('#cyborg-button').click(function (e) {
+$('#controller-button').click(function (e) {
 	$('.droid').hide();
 	$('.android').hide();
-	$('.cyborg').show();
+	$('.controller').show();
 })
 
 $('#android-button').click(function (e) {
-	$('.cyborg').hide();
+	$('.controller').hide();
 	$('.droid').hide();
 	$('.android').show();
 })
