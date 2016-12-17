@@ -16,13 +16,21 @@ $(document).ready(function () {
 
 // CLICK EVENTS FOR OBJECT INFO ASSIGNING
 
+if ($('#robot1').val('') || $('#robot2').val('')) {
+	$('#choose-class').prop('disabled', true)
+}
+
 $('#choose-class').click(function (e) {
 	newPlayerName = $('#robot1').val();
 	enemyPlayerName = $('#robot2').val();
-	newPlayer = new Battle.Combatant.Player(newPlayerName);
-	enemyPlayer = new Battle.Combatant.Player(enemyPlayerName);
+	newPlayer = new Battle.Combatant.Robot(newPlayerName);
+	enemyPlayer = new Battle.Combatant.Robot(enemyPlayerName);
 	console.log(newPlayer.playerName + ' vs ' + enemyPlayer.playerName);
 })
+
+if ($('#robot1').val('') || $('#robot2').val('')) {
+	$('#choose-class').prop('disabled', true)
+}
 
 // CLICK EVENTS FOR PAGE TRANSITIONS
 
