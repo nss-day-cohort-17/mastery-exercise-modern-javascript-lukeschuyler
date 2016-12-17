@@ -20,11 +20,23 @@ body {
 }
 
 .robot-input {
-	font-size: 30px;
+   font-size: 30px;
 }
 
 .input-header {
 	font-size: 50px;
 	color: tomato;
    text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
+   padding-top: 6%;
+   padding-bottom: 6%;
 }
+
+.button-wrapper {
+   padding-top: 6%;
+   padding-bottom: 6%;
+}
+
+.class-button-group {
+	font-size: 50px;
+	width:400px;
+ }
