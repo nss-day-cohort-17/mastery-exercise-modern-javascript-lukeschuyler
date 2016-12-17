@@ -1,6 +1,7 @@
-var newPlayer = new Battle.Dome.Droid()
-console.log(newPlayer)
-
+var newPlayer;
+var newPlayerName;
+var enemyPlayer;
+var enemyPlayerName;
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
 $('#player-names').hide();
@@ -13,11 +14,21 @@ $(document).ready(function () {
 	$('#player-names').show('slow');
 })
 
+// CLICK EVENTS FOR OBJECT INFO ASSIGNING
+
+$('#choose-class').click(function (e) {
+	newPlayerName = $('#robot1').val();
+	enemyPlayerName = $('#robot2').val();
+	newPlayer = new Battle.Combatant.Player(newPlayerName);
+	enemyPlayer = new Battle.Combatant.Player(enemyPlayerName);
+	console.log(newPlayer.playerName + ' vs ' + enemyPlayer.playerName);
+})
+
 // CLICK EVENTS FOR PAGE TRANSITIONS
 
 $('#choose-class').click(function (e){
-		$('#player-names').hide('slow');
-		$('#choose-robot-class').show('slow');
+	$('#player-names').hide('slow');
+	$('#choose-robot-class').show('slow');
 })
 
 $('#choose-robot').click(function (e){
