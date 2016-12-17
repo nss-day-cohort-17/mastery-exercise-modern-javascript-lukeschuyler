@@ -2,12 +2,16 @@ var newPlayer;
 var newPlayerName;
 var enemyPlayer;
 var enemyPlayerName;
+
+// JQUERY STYLING 
+
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
 $('#player-names').hide();
 $('#choose-robot-class').hide();
 $('#choose-robot-type').hide();
 $('.robot-types').hide();
+$('#battleground').hide();
 
 
 $(document).ready(function () {
@@ -75,4 +79,10 @@ $('#android-button').click(function (e) {
 	$('.controller').hide();
 	$('.droid').hide();
 	$('.android').show();
+})
+
+$('#enter').click(function (e){
+	$('#choose-robot-class').hide('slow');
+	$('#main-header-container').hide('slow');
+	$('#battleground').show('slow');
 })
