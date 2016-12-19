@@ -1,7 +1,13 @@
 body {
-	background-color: rgba(0,0,0,.9);
+	/*background: url('http://www.sz0931.com/data/out/86/52590406-terminator-wallpaper.jpeg') center / cover no-repeat fixed;*/
 	font-family: 'Orbitron', sans-serif;
+	background-color: black;
  }
+
+ .player-body {
+ 	background: url('http://www.sz0931.com/data/out/86/52590406-terminator-wallpaper.jpeg') center / cover no-repeat fixed;
+	font-family: 'Orbitron', sans-serif;
+ } 
 
 #main-header {
 	text-align: center;
@@ -26,7 +32,7 @@ body {
 .input-header {
    font-size: 50px;
    letter-spacing: 2px;
-   color: tomato;
+   color: white;
    text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
    padding-top: 6%;
    padding-bottom: 6%;
@@ -54,4 +60,21 @@ body {
 
 .buttonhover {
 	color:red;
+}
+
+label {  
+   color: white;
+   text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
+}
+
+#battle-screen {
+	margin-top: 5%;
+	border: 1px solid rgba(255, 0, 0, 0.8);
+	height: 600px;
+	border-radius: 5%;
+}
+
+#attack {
+	font-size: 30px;
+	width: 650px;
 }

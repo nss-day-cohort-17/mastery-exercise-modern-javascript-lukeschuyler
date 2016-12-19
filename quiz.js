@@ -7,25 +7,28 @@ var enemyPlayerName;
 
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
+$('body').addClass('player-body');
 $('#player-names').hide();
 $('#choose-robot-class').hide();
 $('#choose-robot-type').hide();
 $('.robot-types').hide();
 $('#battleground').hide();
+$('#main-header-container').hide();
 
 
 $(document).ready(function () {
 	$('#player-names').show('slow');
+	$('#main-header-container').show('slow');
 })
 
 // CHECK IF FIELDS HAVE VALUE
 
-$('#choose-class').prop('disabled', true);
-$('.robot-input').keyup(function (e) {
-	if($('#robot1').val() != '' && $('#robot2').val() != '') {
-        $('#choose-class').prop('disabled', false);
-    }
-})
+// $('#choose-class').prop('disabled', true);
+// $('.robot-input').keyup(function (e) {
+// 	if($('#robot1').val() != '' && $('#robot2').val() != '') {
+//         $('#choose-class').prop('disabled', false);
+//     }
+// })
 
 // CLICK EVENTS FOR OBJECT INFO ASSIGNING
 
@@ -64,25 +67,36 @@ $('#choose-robot').click(function (e){
 })
 
 $('#droid-button').click(function (e) {
+	$('#main-header-container').hide('slow');
 	$('.android').hide();
 	$('.controller').hide();
-	$('.droid').show();
+	$('.droid').show('slow');
 })
 
 $('#controller-button').click(function (e) {
+	$('#main-header-container').hide('slow');
 	$('.droid').hide();
 	$('.android').hide();
-	$('.controller').show();
+	$('.controller').show('slow');
 })
 
 $('#android-button').click(function (e) {
+	$('#main-header-container').hide('slow');
 	$('.controller').hide();
 	$('.droid').hide();
-	$('.android').show();
+	$('.android').show('slow');
 })
 
 $('#enter').click(function (e){
 	$('#choose-robot-class').hide('slow');
 	$('#main-header-container').hide('slow');
+	$('body').fadeTo('slow', 1, function () {
+		$('body').removeClass('player-body');
+	})
 	$('#battleground').show('slow');
+	battle();
 })
+
+function battle () {
+	console.log('battle')
+}
