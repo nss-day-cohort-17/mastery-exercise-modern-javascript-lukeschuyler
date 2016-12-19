@@ -14,6 +14,7 @@ $('#player-names').hide();
 $('#choose-robot-class').hide();
 $('#choose-robot-type').hide();
 $('.robot-types').hide();
+$('.robot-types-2').hide();
 $('#battleground').hide();
 $('#main-header-container').hide();
 $('#choose-robot-class-2').hide();
@@ -55,6 +56,20 @@ $('.class-button-group').click(function (e) {
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     newPlayer.class = new Battle.Dome[newTypeText];
     console.log(newPlayer)
+  })
+
+$('.robot-types-2').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    enemyPlayer.type = new Battle.Dome[newTypeText];
+    console.log(enemyPlayer)
+  })
+
+$('.class-button-group').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    enemyPlayer.class = new Battle.Dome[newTypeText];
+    console.log(enemyPlayer)
   })
 
 // CLICK EVENTS FOR PAGE TRANSITIONS
@@ -130,7 +145,7 @@ $('#enter').click(function (e){
 
 function battle () {
 enemyInfo =`<div id="enemyInfo" class="col-md-4 col-md-offset-10">
-				<span class="enemy-span">You</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name}<br> Health: ${enemyPlayer.health}
+				<span class="enemy-span">Enemy</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name}<br> Health: ${enemyPlayer.health}
 			</div>`
 
 yourInfo = `<div id="yourInfo" class="col-md-4">
