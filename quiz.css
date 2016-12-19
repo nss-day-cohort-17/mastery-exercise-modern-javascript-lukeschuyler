@@ -9,6 +9,13 @@ body {
 	font-family: 'Orbitron', sans-serif;
  } 
 
+ .battle-body {
+ 	background: linear-gradient(
+      rgba(0, 0, 0, 0.45), 
+      rgba(0, 0, 0, 0.45)),
+ 	  url(http://antihype.es/wp-content/uploads/2016/02/multijuador-antihype-5.jpg) center / cover no-repeat fixed;
+ }
+
 #main-header {
 	text-align: center;
 	font-size: 80px;
@@ -67,14 +74,51 @@ label {
    text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
 }
 
-#battle-screen {
+.battle-screen {
 	margin-top: 5%;
 	border: 1px solid rgba(255, 0, 0, 0.8);
 	height: 600px;
 	border-radius: 5%;
+	background-color: rgba(255,0,0,.25);
+	/*background-image: url('https://s-media-cache-ak0.pinimg.com/736x/6e/ac/4d/6eac4d23f86a498df9358651820a8f3e.jpg');*/
+  	background-repeat: no-repeat;
+  	background-size: 200px 200px;
+  	background-position: center;
+}
+
+.battle-screen-hit {
+	margin-top: 5%;
+	border: 1px solid rgba(255, 0, 0, 0.8);
+	height: 600px;
+	border-radius: 5%;
+	background-color: rgba(255,0,0,.25);
+	background-image: url('https://s-media-cache-ak0.pinimg.com/736x/6e/ac/4d/6eac4d23f86a498df9358651820a8f3e.jpg');
+  	background-repeat: no-repeat;
+  	background-size: 200px 200px;
+  	background-position: center;
 }
 
 #attack {
 	font-size: 30px;
-	width: 650px;
+	width: 700px;
+}
+
+.battle-screen-info {
+	font-size: 22px;
+	color: #39FF14;
+}
+
+.enemy-span {
+	letter-spacing: 4px;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.crosshair-div {
+	height: 230px;
+	font-size: 40px;
+	color: #39FF14;
+	margin-top:110px;
+	margin-left: 50px; 
+	font-family: 'Bungee Hairline', cursive;
 }

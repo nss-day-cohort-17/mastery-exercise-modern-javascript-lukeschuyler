@@ -2,6 +2,8 @@ var newPlayer;
 var newPlayerName;
 var enemyPlayer;
 var enemyPlayerName;
+var enemyInfo;
+var yourInfo;
 
 // JQUERY STYLING 
 
@@ -14,6 +16,7 @@ $('#choose-robot-type').hide();
 $('.robot-types').hide();
 $('#battleground').hide();
 $('#main-header-container').hide();
+$('#choose-robot-class-2').hide();
 
 
 $(document).ready(function () {
@@ -23,12 +26,12 @@ $(document).ready(function () {
 
 // CHECK IF FIELDS HAVE VALUE
 
-// $('#choose-class').prop('disabled', true);
-// $('.robot-input').keyup(function (e) {
-// 	if($('#robot1').val() != '' && $('#robot2').val() != '') {
-//         $('#choose-class').prop('disabled', false);
-//     }
-// })
+$('#choose-class').prop('disabled', true);
+$('.robot-input').keyup(function (e) {
+	if($('#robot1').val() != '' && $('#robot2').val() != '') {
+        $('#choose-class').prop('disabled', false);
+    }
+})
 
 // CLICK EVENTS FOR OBJECT INFO ASSIGNING
 
@@ -87,16 +90,53 @@ $('#android-button').click(function (e) {
 	$('.android').show('slow');
 })
 
-$('#enter').click(function (e){
+$('#choose-enemy').click(function(e) {
+	$(".robot-types").hide('slow');
 	$('#choose-robot-class').hide('slow');
+	$('#choose-robot-class-2').show('slow');
+})
+
+$('#droid-button-2').click(function (e) {
+	$('#main-header-container').hide('slow');
+	$('.android-2').hide();
+	$('.controller-2').hide();
+	$('.droid-2').show('slow');
+})
+
+$('#controller-button-2').click(function (e) {
+	$('#main-header-container').hide('slow');
+	$('.droid-2').hide();
+	$('.android-2').hide();
+	$('.controller-2').show('slow');
+})
+
+$('#android-button-2').click(function (e) {
+	$('#main-header-container').hide('slow');
+	$('.controller-2').hide();
+	$('.droid-2').hide();
+	$('.android-2').show('slow');
+})
+
+$('#enter').click(function (e){
+	$('#choose-robot-class-2').hide('slow');
 	$('#main-header-container').hide('slow');
 	$('body').fadeTo('slow', 1, function () {
-		$('body').removeClass('player-body');
+	$('body').removeClass('player-body');
+	$('body').addClass('battle-body');
 	})
 	$('#battleground').show('slow');
 	battle();
 })
 
 function battle () {
-	console.log('battle')
+enemyInfo =`<div id="enemyInfo" class="col-md-4 col-md-offset-10">
+				<span class="enemy-span">You</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name}<br> Health: ${enemyPlayer.health}
+			</div>`
+
+yourInfo = `<div id="yourInfo" class="col-md-4">
+				<span class="enemy-span">You</span><br> Name: ${newPlayer.playerName}<br> Type: ${newPlayer.type.name}<br> Health: ${newPlayer.health}
+			</div>`
+
+$('#battle-screen-top').html(enemyInfo);
+$('#battle-screen-bottom').html(yourInfo)
 }
