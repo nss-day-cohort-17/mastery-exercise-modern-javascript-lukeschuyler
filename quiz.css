@@ -142,3 +142,18 @@ label {
 #choose-enemy {
 	font-size: 40px;
 }
+
+.versus-div {
+	margin-top: 320px;
+	font-size: 60px;
+	color: rgba(255, 0, 0, 0.7);
+	text-shadow: 2px 2px 5px white; 
+	text-align: center;
+}
+
+#vs {
+	font-size: 60px;
+	color: white;
+	text-shadow: 10px 10px 20px rgba(255, 0, 0, 0.7); 
+	text-align: center;
+}

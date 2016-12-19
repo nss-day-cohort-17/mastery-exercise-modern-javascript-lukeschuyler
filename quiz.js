@@ -43,7 +43,6 @@ $('#choose-class').click(function (e) {
 	enemyPlayerName = $('#robot2').val();
 	newPlayer = new Battle.Combatant.Robot(newPlayerName);
 	enemyPlayer = new Battle.Combatant.Robot(enemyPlayerName);
-	console.log(newPlayer.playerName + ' vs ' + enemyPlayer.playerName);
 })
 
 $('.robot-types').click(function (e) {
@@ -139,15 +138,36 @@ $('#android-button-2').click(function (e) {
 $('#enter').click(function (e){
 	$('#choose-robot-class-2').hide('slow');
 	$('#main-header-container').hide('slow');
+	
 	$('body').fadeTo('slow', 1, function () {
 	$('body').removeClass('player-body');
 	$('body').addClass('battle-body');
 	})
-	$('#battleground').show('slow');
-	battle();
+
+	$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
+	$('#versus').html('<span>GET READY...</span>');
+
+	setTimeout(function () {
+		$('#versus').html('<span>3</span>')
+			setTimeout(function () {
+			$('#versus').html('<span>2</span>')
+			}, 1000);
+			setTimeout(function () {
+				$('#versus').html('<span>1</span>')
+			}, 2000)
+			setTimeout(function () {
+				$('#versus').html('<span>FIGHT!</span>')
+			}, 3000);
+			setTimeout(function () {
+				battle();
+			}, 4000)
+	}, 3000);
 })
 
 function battle () {
+$('#versus-container').hide()
+$('#battleground').show('slow');
+
 enemyInfo =`<div id="enemyInfo" class="col-md-4 col-md-offset-10">
 				<span class="enemy-span">Enemy</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name}<br> Health: ${enemyPlayer.health}
 			</div>`
