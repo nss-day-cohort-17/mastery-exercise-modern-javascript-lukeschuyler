@@ -18,6 +18,8 @@ $('.robot-types-2').hide();
 $('#battleground').hide();
 $('#main-header-container').hide();
 $('#choose-robot-class-2').hide();
+$('#enter').hide();
+$('#choose-enemy').hide();
 
 
 $(document).ready(function () {
@@ -49,6 +51,7 @@ $('.robot-types').click(function (e) {
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     newPlayer.type = new Battle.Dome[newTypeText];
     console.log(newPlayer)
+    $('#choose-enemy').show('slow');
   })
 
 $('.class-button-group').click(function (e) {
@@ -63,6 +66,7 @@ $('.robot-types-2').click(function (e) {
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     enemyPlayer.type = new Battle.Dome[newTypeText];
     console.log(enemyPlayer)
+    $('#enter').show('slow');
   })
 
 $('.class-button-group').click(function (e) {

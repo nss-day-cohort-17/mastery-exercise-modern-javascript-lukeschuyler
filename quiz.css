@@ -127,3 +127,18 @@ label {
 	margin-left: 50px; 
 	font-family: 'Bungee Hairline', cursive;
 }
+
+.player-select {
+	color: rgba(255, 0, 0, 0.7);
+	text-shadow: 2px 2px 5px white; 
+	font-size: 40px;
+	letter-spacing: 5px;	
+}
+
+#enter {
+	font-size: 40px;
+}
+
+#choose-enemy {
+	font-size: 40px;
+}
