@@ -20,6 +20,7 @@ $('#main-header-container').hide();
 $('#choose-robot-class-2').hide();
 $('#enter').hide();
 $('#choose-enemy').hide();
+$('#game-over').hide();
 
 
 $(document).ready(function () {
@@ -49,7 +50,6 @@ $('.robot-types').click(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     newPlayer.type = new Battle.Dome[newTypeText];
-    console.log(newPlayer)
     $('#choose-enemy').show('slow');
   })
 
@@ -57,14 +57,12 @@ $('.class-button-group').click(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     newPlayer.class = new Battle.Dome[newTypeText];
-    console.log(newPlayer)
   })
 
 $('.robot-types-2').click(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     enemyPlayer.type = new Battle.Dome[newTypeText];
-    console.log(enemyPlayer)
     $('#enter').show('slow');
   })
 
@@ -72,7 +70,6 @@ $('.class-button-group').click(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     enemyPlayer.class = new Battle.Dome[newTypeText];
-    console.log(enemyPlayer)
   })
 
 // CLICK EVENTS FOR PAGE TRANSITIONS
@@ -164,18 +161,90 @@ $('#enter').click(function (e){
 	}, 3000);
 })
 
+function endGame () {
+  if (newPlayer.health <= 0) {
+  	setTimeout(function () {
+  		$('#battleground').hide('slow');
+  		$('.game-end').html(`${enemyPlayer.playerName} Wins<br>You Lose`);
+  		$('#game-over').show('slow');
+  	}, 1000)
+
+
+  } else if (enemyPlayer.health <= 0) {
+  	setTimeout(function () {
+  		$('#battleground').hide('slow');
+  		$('.game-end').html(`${newPlayer.playerName} Wins!`);
+  		$('#game-over').show('slow');
+  	}, 1000)
+  } 
+
+  $('#exitBtn').click(function (e){
+    location.reload()
+})
+
+}
+
+$('#attack').click(function (e) {
+	
+	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
+
+    $('#enemyHealth').val(enemyPlayer.health);
+    $('#attack').prop('disabled', true);
+    setTimeout(function() {
+      $('#attack').prop('disabled', false);
+    }, 1200)
+
+})
+
+
+
 function battle () {
+newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
+enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
 $('#versus-container').hide()
 $('#battleground').show('slow');
-
-enemyInfo =`<div id="enemyInfo" class="col-md-4 col-md-offset-10">
-				<span class="enemy-span">Enemy</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name}<br> Health: ${enemyPlayer.health}
+$('#health').val(newPlayer.health);
+$('#enemyHealth').val(enemyPlayer.health);
+enemyInfo =`<div id="enemyInfo" class="col-md-4">
+				<span class="enemy-span">Enemy</span><br> Name: ${enemyPlayer.playerName}<br> Type: ${enemyPlayer.type.name} Health: <progress id="enemyHealth" value="${enemyPlayer.health}" max="130"></progress>
 			</div>`
 
 yourInfo = `<div id="yourInfo" class="col-md-4">
-				<span class="enemy-span">You</span><br> Name: ${newPlayer.playerName}<br> Type: ${newPlayer.type.name}<br> Health: ${newPlayer.health}
+				<span class="enemy-span">You</span><br> Name: ${newPlayer.playerName}<br> Type: ${newPlayer.type.name} Health: <progress id="health" value="${newPlayer.health}" max="130"></progress>
 			</div>`
 
 $('#battle-screen-top').html(enemyInfo);
 $('#battle-screen-bottom').html(yourInfo)
+
+
+function enemyAttack() {
+
+
+  $('.battle-screen').addClass('battle-screen-hit');
+  setTimeout(function () {
+    $('.battle-screen').removeClass('battle-screen-hit');
+      endGame();
+
+  }, 200);
+
+
+  newPlayer.health = newPlayer.health - (enemyPlayer.attack + enemyPlayer.type.strengthBonus);
+
+$('#health').val(newPlayer.health);
+
+// console.log(newPlayer.health)
+}
+
+(function loop() {
+   var rand = Math.round(Math.random() * (3000 - 500)) + 1000;
+   if (enemyPlayer.health > 0) {
+   	setTimeout(function() {
+      enemyAttack();
+      loop();  
+    }, rand); } else {
+      endGame();
+   }
+
+}());
+
 }

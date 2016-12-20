@@ -96,10 +96,10 @@ label {
 	border: 1px solid rgba(255, 0, 0, 0.8);
 	height: 600px;
 	border-radius: 5%;
-	background-color: rgba(255,0,0,.25);
-	background-image: url('https://s-media-cache-ak0.pinimg.com/736x/6e/ac/4d/6eac4d23f86a498df9358651820a8f3e.jpg');
+	background-color: rgba(200,255,255,.4);
+	/*background-image: url('http://2.bp.blogspot.com/-2r6vpRi3rPA/T5044Zvc--I/AAAAAAAAA1A/5XLz3kCqIQw/s1600/Muzzle-flash-jm.jpg');*/
   	background-repeat: no-repeat;
-  	background-size: 200px 200px;
+  	background-size: 100px 100px;
   	background-position: center;
 }
 
@@ -156,4 +156,18 @@ label {
 	color: white;
 	text-shadow: 10px 10px 20px rgba(255, 0, 0, 0.7); 
 	text-align: center;
+}
+
+.game-end {
+	margin-top: 160px;
+	font-size: 60px;
+	color: white;
+	text-shadow: 10px 10px 20px rgba(255, 0, 0, 0.7); 
+	text-align: center;
+}
+
+#exitBtn {
+	margin-top: 160px;
+	font-size: 50px;
+	letter-spacing: 12px;
 }
