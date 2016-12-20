@@ -6,7 +6,6 @@ Battle.Dome.RobotClass = function () {
 	this.healthBonus = 0;
 	this.strengthBonus = 0;
 	this.CPUBonus = 0;
-
 }
 
 // DROIDS

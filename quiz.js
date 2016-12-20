@@ -9,6 +9,8 @@ var yourInfo;
 
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
+function reset () {
+
 $('body').addClass('player-body');
 $('#player-names').hide();
 $('#choose-robot-class').hide();
@@ -22,6 +24,8 @@ $('#enter').hide();
 $('#choose-enemy').hide();
 $('#game-over').hide();
 
+}
+reset();
 
 $(document).ready(function () {
 	$('#player-names').show('slow');
@@ -185,6 +189,7 @@ function endGame () {
 }
 
 $('#attack').click(function (e) {
+	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
 	
 	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
 
@@ -192,7 +197,7 @@ $('#attack').click(function (e) {
     $('#attack').prop('disabled', true);
     setTimeout(function() {
       $('#attack').prop('disabled', false);
-    }, 1200)
+    }, yourSpeed)
 
 })
 
@@ -236,12 +241,13 @@ $('#health').val(newPlayer.health);
 }
 
 (function loop() {
-   var rand = Math.round(Math.random() * (3000 - 500)) + 1000;
+   // var rand = Math.round(Math.random() * (3000 - 500)) + 1000;
+   var enemySpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
    if (enemyPlayer.health > 0) {
    	setTimeout(function() {
       enemyAttack();
       loop();  
-    }, rand); } else {
+    }, enemySpeed); } else {
       endGame();
    }
 
