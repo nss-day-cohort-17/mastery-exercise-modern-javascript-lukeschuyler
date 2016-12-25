@@ -279,6 +279,15 @@ function playerOneAttack() {
     setTimeout(function() {
       $('#attack1').prop('disabled', false);
     }, playerOneSpeed)
+
+
+  $('.battle-screen-2').addClass('battle-screen-hit');
+  setTimeout(function () {
+    $('.battle-screen-2').removeClass('battle-screen-hit');
+      endGame();
+
+  }, 200);
+
     endGame();
 }
 
@@ -292,6 +301,15 @@ function playerTwoAttack() {
     setTimeout(function() {
       $('#attack2').prop('disabled', false);
     }, playerTwoSpeed)
+
+
+  $('.battle-screen-1').addClass('battle-screen-hit');
+  setTimeout(function () {
+    $('.battle-screen-1').removeClass('battle-screen-hit');
+      endGame();
+
+  }, 200);
+
     endGame();
 }
 
@@ -314,7 +332,18 @@ $('#attack2').click(function (e) {
 
 })
 
+$(document).keypress(function (e) { 
+	if (e.keyCode === 97) {
+		playerOneAttack();
+  	}	
+})
 
+
+$(document).keypress(function (e) { 
+	if (e.keyCode === 108) {
+		playerTwoAttack();
+  	}	
+})
 
 function battle () {
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
@@ -405,5 +434,8 @@ yourInfo = `<div id="yourInfo" class="col-md-4">
 $('#battle-screen-bottom-1').html(yourInfo)
 $('#battle-screen-bottom-2').html(enemyInfo)
 
+
+
 endGame();
+
 }
