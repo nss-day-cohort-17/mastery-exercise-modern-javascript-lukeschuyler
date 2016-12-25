@@ -40,17 +40,22 @@ body {
    font-size: 50px;
    letter-spacing: 2px;
    color: white;
-   text-shadow: 2px 5px 10px rgba(255, 0, 0, 0.7); 
-   padding-top: 6%;
-   padding-bottom: 6%;
+   text-shadow: 10px 10px 20px rgba(255, 0, 0, 0.7); 
+   padding-top: 4%;
+   padding-bottom: 4%;
 }
 
 .button-wrapper {
-   padding-top: 6%;
-   padding-bottom: 6%;
+   padding-top: 2.5%;
+   padding-bottom: 2.5%;
 }
 
 .class-button-group {
+	font-size: 50px;
+	width:400px;
+ }
+
+.class-button-group-2 {
 	font-size: 50px;
 	width:400px;
  }
@@ -70,9 +75,6 @@ body {
 	margin-right: 8%;
 }
 
-.buttonhover {
-	color:red;
-}
 
 label {  
    color: white;
@@ -91,6 +93,37 @@ label {
   	background-position: center;
 }
 
+.battle-screen-1 {
+	margin-top: 5%;
+	border: 1px solid rgba(255, 0, 0, 0.8);
+	height: 600px;
+	border-radius: 5%;
+	background-color: rgba(255,0,0,.25);
+	background-image: url('http://appcheaters.com/wp-content/uploads/2016/11/futuristic-robot-battle-e1478275880746.jpg');
+	background-repeat: no-repeat;
+  	background-size: 640px 600px;
+  	background-position: center;
+}
+
+.battle-screen-2 {
+	margin-top: 5%;
+	border: 1px solid rgba(255, 0, 0, 0.8);
+	height: 600px;
+	border-radius: 5%;
+	background-color: rgba(255,0,0,.25);
+	background-image: url('http://orig12.deviantart.net/8c49/f/2010/060/b/8/battle_robot_by_garr0t.jpg');
+  	background-repeat: no-repeat;
+  	background-size: 640px 600px;
+  	background-position: center;
+}
+
+.overlay {
+ 	background: linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)),
+ 	  url(http://antihype.es/wp-content/uploads/2016/02/multijuador-antihype-5.jpg) center / cover no-repeat fixed;
+ }
+
 .battle-screen-hit {
 	margin-top: 5%;
 	border: 1px solid rgba(255, 0, 0, 0.8);
@@ -106,6 +139,18 @@ label {
 #attack {
 	font-size: 30px;
 	width: 700px;
+}
+
+.attack2 {
+	font-size: 30px;
+	width: 300px;
+	margin-top: 50px;
+}
+
+#mid-line {
+	border:1px solid white;
+	width:1px;
+	height: 900px;
 }
 
 .battle-screen-info {
@@ -128,15 +173,34 @@ label {
 	font-family: 'Bungee Hairline', cursive;
 }
 
+.crosshair-div2 {
+	height: 230px;
+	font-size: 40px;
+	color: #39FF14;
+	margin-top:110px;
+	margin-left: 50px; 
+	font-family: 'Bungee Hairline', cursive;
+}
+
 .player-select {
-	color: rgba(255, 0, 0, 0.7);
-	text-shadow: 2px 2px 5px white; 
+	color: rgba(255, 0, 0, 0.5);
+	text-shadow: 10px 10px 20px maroon; 
 	font-size: 40px;
 	letter-spacing: 5px;	
 }
 
 #enter {
 	font-size: 40px;
+}
+
+#choose-class {
+	font-size: 25px;
+	letter-spacing: 8px;
+}
+
+#choose-class-2 {
+	font-size: 25px;
+	letter-spacing: 8px;
 }
 
 #choose-enemy {
@@ -146,8 +210,8 @@ label {
 .versus-div {
 	margin-top: 320px;
 	font-size: 60px;
-	color: rgba(255, 0, 0, 0.7);
-	text-shadow: 2px 2px 5px white; 
+	color: white;
+	text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7); 
 	text-align: center;
 }
 
@@ -170,4 +234,24 @@ label {
 	margin-top: 160px;
 	font-size: 50px;
 	letter-spacing: 12px;
+}
+
+#battleground-2 {
+	border: 1px solid white;
+	height: 800px;
+	margin: 0;
+ }
+
+.players {
+ 	font-size: 40px;
+	text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7); 
+	text-align: center;
+ }
+
+#battle-screen-bottom-1 {
+	margin-top: 90px;
+ }
+
+#battle-screen-bottom-2 {
+	margin-top: 90px;
 }

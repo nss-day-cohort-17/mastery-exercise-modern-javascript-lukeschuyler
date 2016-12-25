@@ -32,14 +32,17 @@
 						<input class="robot-input input-group" id="robot1" type="text" name="robotname">
 					</div>
 					<div class="col-md-3 col-md-offset-3">
-						<label>Enemy Name</label>
+						<label>Enemy Name (Player 2)</label>
 						<input class="robot-input input-group" id="robot2" type="text" name="robotname">
 					</div>
 				</div>
 
 				<div class="row button-wrapper">
-					<div class="col-md-4 col-md-offset-5">
-						<button id="choose-class" class="btn btn-default move-button btn btn-default">Select Robots</button>
+					<div class="col-md-4">
+						<button id="choose-class" class="btn btn-default move-button btn btn-default">Select Robots (1-player)</button>
+					</div>
+					<div class="col-md-4 col-md-offset-3">
+						<button id="choose-class-2" class="btn btn-default move-button btn btn-default">Select Robots (2-player)</button>
 					</div>
 				</div>
 
@@ -106,9 +109,9 @@
 				<div class="row">
 					<div class="col-md-offset-1">
 						<div class="btn-group" role="group" aria-label="...">
-  							<button id="droid-button-2" type="button" class="btn btn-default class-button-group">Droid</button>
-  							<button id="controller-button-2" type="button" class="btn btn-default class-button-group">Android</button>
-  							<button id="android-button-2" type="button" class="btn btn-default class-button-group">Controller</button>
+  							<button id="droid-button-2" type="button" class="btn btn-default class-button-group-2">Droid</button>
+  							<button id="controller-button-2" type="button" class="btn btn-default class-button-group-2">Android</button>
+  							<button id="android-button-2" type="button" class="btn btn-default class-button-group-2">Controller</button>
 						</div>
 					</div>
 				</div>
@@ -185,6 +188,55 @@
 					</div>
 				</div>
 			</section>
+
+			<section class= "container-fluid" id="battleground-2">
+
+				<div class="row">
+					<div class="col-md-6 battle-screen-1">
+						<div class="players">PLAYER 1</div>
+						<div class="container-fluid">
+							<div id= battle-screen-top-1 class="battle-screen-info-1 row">
+							</div>
+							<div class="crosshair-div2 row">
+								<div class="col-md-1 col-md-offset-4">
+									<span class="crosshair">+</span>
+								</div>
+							</div>
+							<div id="battle-screen-bottom-1" class="battle-screen-info-1 row">
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+								<button id="attack1" class="attack2 btn btn-default">ATTACK</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 battle-screen-2">
+						<div class="players">PLAYER 2</div>
+
+						<div class="container-fluid">
+							<div id= battle-screen-top-2 class="battle-screen-info-2 row">
+							</div>
+							<div class="crosshair-div2 row">
+								<div class="col-md-1 col-md-offset-5">
+									<span class="crosshair">+</span>
+								</div>
+							</div>
+							<div id="battle-screen-bottom-2" class="battle-screen-info-2 row">
+							</div>
+							<div class="row">
+								<div class="col-md-2 col-md-offset-1">
+									<button id="attack2" class="attack2 btn btn-default">ATTACK</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</section>
+
 			<section id="game-over">
 				<div class="row">
 					<div class="game-end col-md-4 col-md-offset-4">
