@@ -277,3 +277,12 @@ progress:not[value] {
 	margin-top: 150px;
 	/*position: fixed;*/
 }
+
+#miss {
+	font-size: 80px;
+	color:red;
+}
+
+#health {
+	display: inline-block;
+}

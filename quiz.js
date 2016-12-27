@@ -289,11 +289,23 @@ function endGame () {
 
 }
 
-// var accuracyCounter = 0;
+var accuracyCounter = 1;
 
 function userAttack() {
 
+	console.log(accuracyCounter);
+
 	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
+
+	if ((accuracyCounter % 5) === 0) {
+		$('#attack').text('MISS!!');
+		$('#attack').prop('disabled', true);
+		setTimeout(function() {
+			$('#attack').text('Attack');
+		    $('#attack').prop('disabled', false);
+    }, (yourSpeed + 1000))
+	
+	} else {
 	
 	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
 
@@ -302,6 +314,9 @@ function userAttack() {
     setTimeout(function() {
       $('#attack').prop('disabled', false);
     }, yourSpeed)
+
+	}
+	accuracyCounter++;
 }
 
 function playerOneAttack() {
@@ -389,14 +404,20 @@ yourInfo = `<div id="yourInfo" class="col-md-8">
 				Name: ${newPlayer.playerName}<br> 
 				Type: ${newPlayer.type.name} 
 				<progress id="health" value="${newPlayer.health}" max="${newPlayer.health}"></progress>
+				<span id="miss"></span>
 			</div>`
 
 $('#battle-screen-top').html(enemyInfo);
 $('#battle-screen-bottom').html(yourInfo)
 
+var enemyAccuracy = 1;
 
 function enemyAttack() {
 
+	// if ((enemyAccuracy % 5) === 0 {
+		
+		
+	// }
 
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {
@@ -410,7 +431,7 @@ function enemyAttack() {
 
 $('#health').val(newPlayer.health);
 
-
+	enemyAccuracy++;
 }
 
 (function loop() {
