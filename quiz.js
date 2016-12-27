@@ -4,7 +4,7 @@ var enemyPlayer;
 var enemyPlayerName;
 var enemyInfo;
 var yourInfo;
-var twoPlayer=false;
+var twoPlayer = false;
 
 // JQUERY STYLING 
 
@@ -124,21 +124,21 @@ $('#droid-button').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.android').hide();
 	$('.controller').hide();
-	$('.droid').show('slow');
+	$('.droid').show();
 })
 
 $('#controller-button').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.droid').hide();
 	$('.android').hide();
-	$('.controller').show('slow');
+	$('.controller').show();
 })
 
 $('#android-button').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.controller').hide();
 	$('.droid').hide();
-	$('.android').show('slow');
+	$('.android').show();
 })
 
 $('#choose-enemy').click(function(e) {
@@ -151,36 +151,68 @@ $('#droid-button-2').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.android-2').hide();
 	$('.controller-2').hide();
-	$('.droid-2').show('slow');
+	$('.droid-2').show();
 })
 
 $('#controller-button-2').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.droid-2').hide();
 	$('.android-2').hide();
-	$('.controller-2').show('slow');
+	$('.controller-2').show();
 })
 
 $('#android-button-2').click(function (e) {
 	$('#main-header-container').hide('slow');
 	$('.controller-2').hide();
 	$('.droid-2').hide();
-	$('.android-2').show('slow');
+	$('.android-2').show();
 })
+
+// mouseover to show robot type attributes
+
+$('.robot-types').mouseover(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+
+    	
+    	$('.type-info').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+    
+  })
+
+$('.robot-types-2').mouseover(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+    	
+    	$('.type-info-2').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+    
+    
+  })
 
 $('#enter').click(function (e){
 	if (twoPlayer === false) {
-	console.log(twoPlayer);
-	$('#choose-robot-class-2').hide('slow');
-	$('#main-header-container').hide('slow');
+	// $('#choose-robot-class-2').hide('slow');
+	// $('#main-header-container').hide('slow');
 	
-	$('body').fadeTo('slow', 1, function () {
-	$('body').removeClass('player-body');
-	$('body').addClass('battle-body');
+	$('#choose-robot-class-2').fadeTo(1000, .01,  function () {
+		$('#choose-robot-class-2').hide('slow');
+		$('#main-header-container').hide('slow');
 	})
+	
+	$('body').fadeIn('slow', .8, function(){
+		$('body').removeClass('player-body');
+		$('body').addClass('battle-body');
+		$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
+		$('#versus').html('<span>GET READY...</span>');
+	})
+	
 
-	$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
-	$('#versus').html('<span>GET READY...</span>');
+
 
 	setTimeout(function () {
 		$('#versus').html('<span>3</span>')
@@ -257,7 +289,10 @@ function endGame () {
 
 }
 
+// var accuracyCounter = 0;
+
 function userAttack() {
+
 	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
 	
 	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
@@ -332,38 +367,28 @@ $('#attack2').click(function (e) {
 
 })
 
-$(document).keypress(function (e) { 
-	if (e.keyCode === 97) {
-		playerOneAttack();
-  	}	
-})
-
-
-$(document).keypress(function (e) { 
-	if (e.keyCode === 108) {
-		playerTwoAttack();
-  	}	
-})
 
 function battle () {
+console.log(newPlayer)
+console.log(enemyPlayer)
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
 $('#versus-container').hide()
 $('#battleground').show('slow');
 $('#health').val(newPlayer.health);
 $('#enemyHealth').val(enemyPlayer.health);
-enemyInfo =`<div id="enemyInfo" class="col-md-4">
+enemyInfo =`<div id="enemyInfo" class="col-md-8">
 				<span class="enemy-span">Enemy</span><br> 
 				Name: ${enemyPlayer.playerName}<br> 
-				Type: ${enemyPlayer.type.name} Health: 
-				<progress id="enemyHealth" value="${enemyPlayer.health}" max="130"></progress>
+				Type: ${enemyPlayer.type.name}
+				<progress id="enemyHealth" value="${enemyPlayer.health}" max="${enemyPlayer.health}"></progress>
 			</div>`
 
-yourInfo = `<div id="yourInfo" class="col-md-4">
+yourInfo = `<div id="yourInfo" class="col-md-8">
 				<span class="enemy-span">You</span><br> 
 				Name: ${newPlayer.playerName}<br> 
-				Type: ${newPlayer.type.name} Health: 
-				<progress id="health" value="${newPlayer.health}" max="130"></progress>
+				Type: ${newPlayer.type.name} 
+				<progress id="health" value="${newPlayer.health}" max="${newPlayer.health}"></progress>
 			</div>`
 
 $('#battle-screen-top').html(enemyInfo);
@@ -408,6 +433,19 @@ $(document).keypress(function (e) {
 })
 
 }
+
+$(document).keypress(function (e) { 
+	if (e.keyCode === 97) {
+		playerOneAttack();
+  	}	
+})
+
+
+$(document).keypress(function (e) { 
+	if (e.keyCode === 108) {
+		playerTwoAttack();
+  	}	
+})
 
 function battleTwo () {
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;

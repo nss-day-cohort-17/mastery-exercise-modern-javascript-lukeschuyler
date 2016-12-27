@@ -40,7 +40,7 @@ Battle.Dome.Spud.prototype = new Battle.Dome.Droid();
 
 Battle.Dome.Booker = function () {
 	this.name = "Booker"
-	this.healthBonus = 20;
+	this.healthBonus = 50;
 	this.strengthBonus = 3;
 	this.CPUBonus = -10;
 }
