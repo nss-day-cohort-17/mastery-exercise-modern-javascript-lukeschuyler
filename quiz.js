@@ -8,6 +8,8 @@ var twoPlayer = false;
 
 // JQUERY STYLING 
 
+console.log(Math.round(Math.random() * 10))
+
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
 function reset () {
@@ -35,6 +37,9 @@ $(document).ready(function () {
 	$('#main-header-container').show('slow');
 })
 
+// $('button').mouseover(function (e) {
+// 	$(this).addClass('hover-button');
+// });
 
 // 1 Player 
 
@@ -182,6 +187,15 @@ $('.robot-types').mouseover(function (e) {
     
   })
 
+$('.robot-types').mouseleave(function(e) {
+	var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+	$('.type-info').html(`<div class="invisibot col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+})
+
 $('.robot-types-2').mouseover(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
@@ -193,6 +207,15 @@ $('.robot-types-2').mouseover(function (e) {
     
     
   })
+
+$('.robot-types-2').mouseleave(function(e) {
+	var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+	$('.type-info-2').html(`<div class="invisibot col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+})
 
 $('#enter').click(function (e){
 	if (twoPlayer === false) {
@@ -293,8 +316,6 @@ var accuracyCounter = 1;
 
 function userAttack() {
 
-	console.log(accuracyCounter);
-
 	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
 
 	if ((accuracyCounter % 5) === 0) {
@@ -303,7 +324,7 @@ function userAttack() {
 		setTimeout(function() {
 			$('#attack').text('Attack');
 		    $('#attack').prop('disabled', false);
-    }, (yourSpeed + 1000))
+    }, (yourSpeed))
 	
 	} else {
 	
@@ -404,7 +425,6 @@ yourInfo = `<div id="yourInfo" class="col-md-8">
 				Name: ${newPlayer.playerName}<br> 
 				Type: ${newPlayer.type.name} 
 				<progress id="health" value="${newPlayer.health}" max="${newPlayer.health}"></progress>
-				<span id="miss"></span>
 			</div>`
 
 $('#battle-screen-top').html(enemyInfo);
@@ -414,11 +434,17 @@ var enemyAccuracy = 1;
 
 function enemyAttack() {
 
-	// if ((enemyAccuracy % 5) === 0 {
+	if ((enemyAccuracy % 4) === 0) {
 		
-		
-	// }
+	$('.battle-screen').addClass('battle-screen-miss');
+  setTimeout(function () {
+    $('.battle-screen').removeClass('battle-screen-miss');
+      endGame();
 
+  }, 200);
+		
+	} else {
+ 
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {
     $('.battle-screen').removeClass('battle-screen-hit');
@@ -429,7 +455,9 @@ function enemyAttack() {
 
   newPlayer.health = newPlayer.health - (enemyPlayer.attack + enemyPlayer.type.strengthBonus);
 
-$('#health').val(newPlayer.health);
+	$('#health').val(newPlayer.health);
+
+}
 
 	enemyAccuracy++;
 }
@@ -455,18 +483,6 @@ $(document).keypress(function (e) {
 
 }
 
-$(document).keypress(function (e) { 
-	if (e.keyCode === 97) {
-		playerOneAttack();
-  	}	
-})
-
-
-$(document).keypress(function (e) { 
-	if (e.keyCode === 108) {
-		playerTwoAttack();
-  	}	
-})
 
 function battleTwo () {
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
@@ -496,5 +512,18 @@ $('#battle-screen-bottom-2').html(enemyInfo)
 
 
 endGame();
+
+$(document).keypress(function (e) { 
+	if (e.keyCode === 97) {
+		playerOneAttack();
+  	}	
+})
+
+
+$(document).keypress(function (e) { 
+	if (e.keyCode === 108) {
+		playerTwoAttack();
+  	}	
+})
 
 }
