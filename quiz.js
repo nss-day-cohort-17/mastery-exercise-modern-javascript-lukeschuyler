@@ -8,8 +8,6 @@ var twoPlayer = false;
 
 // JQUERY STYLING 
 
-console.log(Math.round(Math.random() * 10))
-
 // INITIAL PAGE HIDES FOR SPA EXECUTION
 
 function reset () {
@@ -254,10 +252,8 @@ $('#enter').click(function (e){
 	}, 3000);
 	
 	} else if (twoPlayer === true) {
-		console.log(twoPlayer);
-		console.log('hey');
-		$('#choose-robot-class-2').hide('slow');
-		$('#main-header-container').hide('slow');
+		// $('#choose-robot-class-2').hide('slow');
+		// $('#main-header-container').hide('slow');
 		
 		$('body').fadeTo('slow', 1, function () {
 		$('body').removeClass('player-body');
@@ -405,10 +401,11 @@ $('#attack2').click(function (e) {
 
 
 function battle () {
-console.log(newPlayer)
-console.log(enemyPlayer)
+
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
+console.log(newPlayer.health)
+console.log(enemyPlayer.health)
 $('#versus-container').hide()
 $('#battleground').show('slow');
 $('#health').val(newPlayer.health);
@@ -434,7 +431,9 @@ var enemyAccuracy = 1;
 
 function enemyAttack() {
 
-	if ((enemyAccuracy % 4) === 0) {
+	var rand = Math.round((Math.random() * 5) + 2)
+
+	if ((enemyAccuracy % rand) === 0) {
 		
 	$('.battle-screen').addClass('battle-screen-miss');
   setTimeout(function () {
@@ -457,7 +456,7 @@ function enemyAttack() {
 
 	$('#health').val(newPlayer.health);
 
-}
+	}
 
 	enemyAccuracy++;
 }

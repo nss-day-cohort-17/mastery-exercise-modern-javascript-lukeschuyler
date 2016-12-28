@@ -1,6 +1,8 @@
 var Battle = {};
 Battle.Dome = {};
 
+var randomNumber = Math.round(Math.random() * 30);
+
 Battle.Dome.RobotClass = function () {
 	this.name = "Mr. Roboto";
 	this.healthBonus = 0;
