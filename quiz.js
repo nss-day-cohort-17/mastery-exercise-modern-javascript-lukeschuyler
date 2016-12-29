@@ -64,7 +64,7 @@ $('#choose-class').click(function (e) {
 	newPlayerName = $('#robot1').val();
 	enemyPlayerName = $('#robot2').val();
 	newPlayer = new Battle.Combatant.Robot(newPlayerName);
-	enemyPlayer = new Battle.Combatant.Robot(enemyPlayerName);
+	enemyPlayer = new Battle.Combatant.RobotTwo(enemyPlayerName);
 	twoPlayer = false;
 	console.log(twoPlayer)
 })
@@ -324,7 +324,7 @@ function userAttack() {
 	
 	} else {
 	
-	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
+	enemyPlayer.health = enemyPlayer.health - (newPlayer.attack + newPlayer.type.strengthBonus);
 
     $('#enemyHealth').val(enemyPlayer.health);
     $('#attack').prop('disabled', true);
@@ -404,8 +404,8 @@ function battle () {
 
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
-console.log(newPlayer.health)
-console.log(enemyPlayer.health)
+console.log(newPlayer)
+console.log(enemyPlayer)
 $('#versus-container').hide()
 $('#battleground').show('slow');
 $('#health').val(newPlayer.health);
