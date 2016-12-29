@@ -252,8 +252,8 @@ $('#enter').click(function (e){
 	}, 3000);
 	
 	} else if (twoPlayer === true) {
-		// $('#choose-robot-class-2').hide('slow');
-		// $('#main-header-container').hide('slow');
+		$('#choose-robot-class-2').hide('slow');
+		$('#main-header-container').hide('slow');
 		
 		$('body').fadeTo('slow', 1, function () {
 		$('body').removeClass('player-body');

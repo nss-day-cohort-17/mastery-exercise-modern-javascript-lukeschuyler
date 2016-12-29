@@ -33,7 +33,7 @@ body {
 }
 
 .robot-input {
-   font-size: 30px;
+   font-size: 25px;
 }
 
 .input-header {
@@ -211,13 +211,13 @@ label {
 }
 
 #choose-class {
-	font-size: 25px;
-	letter-spacing: 8px;
+	font-size: 22px;
+	letter-spacing: 2px;
 }
 
 #choose-class-2 {
-	font-size: 25px;
-	letter-spacing: 8px;
+	font-size: 22px;
+	letter-spacing: 2px;
 }
 
 #choose-enemy {
