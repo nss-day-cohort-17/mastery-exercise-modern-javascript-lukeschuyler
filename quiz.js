@@ -346,7 +346,7 @@ $('#enter').click(function (e){
 function endGame () {
   if (newPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').off();
+  	enemyAudio = ''
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -357,7 +357,7 @@ function endGame () {
 
   } else if (enemyPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').off();
+  	enemyAudio = ''
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -374,6 +374,36 @@ function endGame () {
 
 // ONE PLAYER BATTLE AND ATTACKS
 
+var accuracyCounter = 1;
+
+function userAttack() {
+
+	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
+
+	if ((accuracyCounter % 5) === 0) {
+		$('#attack').text('MISS!!');
+		$('#attack').prop('disabled', true);
+		setTimeout(function() {
+			$('#attack').text('Attack');
+		    $('#attack').prop('disabled', false);
+    }, (yourSpeed))
+	
+	} else {
+
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
+	
+	enemyPlayer.health = enemyPlayer.health - (newPlayer.attack + newPlayer.type.strengthBonus);
+
+    $('#enemyHealth').val(enemyPlayer.health);
+    $('#attack').prop('disabled', true);
+    setTimeout(function() {
+      $('#attack').prop('disabled', false);
+    }, yourSpeed)
+
+	}
+	accuracyCounter++;
+}
 
 
 function battle () {
@@ -407,7 +437,7 @@ $('#battle-screen-top').html(enemyInfo);
 $('#battle-screen-bottom').html(yourInfo)
 
 var enemyAccuracy = 1;
-
+let enemyAudio;
 function enemyAttack() {
 
 	var rand = Math.round((Math.random() * 5) + 2)
@@ -423,7 +453,8 @@ function enemyAttack() {
 		
 	} else {
 
-	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').play();
+	// enemyAudio = new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3');
+	// enemyAudio.play();
  
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {
@@ -526,6 +557,8 @@ function playerTwoAttack() {
 
 
 function battleTwo () {
+myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
+myAudio.play();
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
 $('#versus-container').hide()
@@ -536,14 +569,14 @@ enemyInfo =`<div id="enemyInfo" class="col-md-4">
 				<span class="enemy-span">Player 2</span><br> 
 				Name: ${enemyPlayer.playerName}<br> 
 				Type: ${enemyPlayer.type.name} Health: 
-				<progress id="enemyHealth2" value="${enemyPlayer.health}" max="130"></progress>
+				<progress id="enemyHealth2" value="${enemyPlayer.health}" max="${enemyPlayer.health}"></progress>
 			</div>`
 
 yourInfo = `<div id="yourInfo" class="col-md-4">
 				<span class="enemy-span">Player 1</span><br> 
 				Name: ${newPlayer.playerName}<br> 
 				Type: ${newPlayer.type.name} Health: 
-				<progress id="health2" value="${newPlayer.health}" max="130"></progress>
+				<progress id="health2" value="${newPlayer.health}" max="${newPlayer.health}"></progress>
 			</div>`
 
 

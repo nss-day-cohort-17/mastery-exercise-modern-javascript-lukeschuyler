@@ -43,7 +43,7 @@ Battle.Dome.Booker = function () {
 	this.name = "Booker"
 	this.healthBonus = 50;
 	this.strengthBonus = 3;
-	this.CPUBonus = -10;
+	this.CPUBonus = -50;
 }
 
 Battle.Dome.Booker.prototype = new Battle.Dome.Droid();
