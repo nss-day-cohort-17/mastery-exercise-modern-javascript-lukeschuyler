@@ -31,11 +31,11 @@ $('#versus-container').hide();
 }
 reset();
 
-$('button').click(function (e) {
-		
+// button click audio
+
+$('button').click(function (e) {	
 	var audio = new Audio('http://cd.textfiles.com/cdaction/cdaction24b/Q2/SPLASH/WAV/BTNX.WAV');
 	audio.play();
-
 })
 
 $(document).ready(function () {
@@ -49,10 +49,6 @@ $(document).ready(function () {
 	$('#player-names').show('slow');
 	$('#main-header-container').show('slow');
 })
-
-
-// 1 Player 
-
 
 // CHECK IF FIELDS HAVE VALUE
 
@@ -186,6 +182,8 @@ $('#android-button-2').click(function (e) {
 	$('.android-2').show();
 })
 
+// click to show selected robots attributes
+
 $('.robot-types').click(function(e) {
 	var audio = new Audio('https://freesound.org/data/previews/256/256543_1490240-lq.mp3');
 	audio.play();
@@ -268,12 +266,13 @@ $('.robot-types-2').click(function (e) {
     								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
 })
 
+// ENTER TO BATTLE 1 and 2 PLAYER
+
 $('#enter').click(function (e){
 	if (twoPlayer === false) {
 	// $('#choose-robot-class-2').hide('slow');
 	// $('#main-header-container').hide('slow');
 
-	
 	$('#choose-robot-class-2').fadeTo(1000, .01,  function () {
 		$('#choose-robot-class-2').hide('slow');
 		$('#main-header-container').hide('slow');
@@ -285,9 +284,6 @@ $('#enter').click(function (e){
 		$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
 		$('#versus').html('<span>GET READY...</span>');
 	})
-	
-
-
 
 	setTimeout(function () {
 		$('#versus-container').show();
@@ -345,10 +341,12 @@ $('#enter').click(function (e){
 	}
 })
 
+// ENDGAME FUNCTION FOR 1 AND 2 PLAYER
+
 function endGame () {
   if (newPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').pause();
+  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').off();
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -359,7 +357,7 @@ function endGame () {
 
   } else if (enemyPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').pause();
+  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').off();
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -374,105 +372,8 @@ function endGame () {
 
 }
 
-var accuracyCounter = 1;
+// ONE PLAYER BATTLE AND ATTACKS
 
-function userAttack() {
-
-	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
-
-	if ((accuracyCounter % 5) === 0) {
-		$('#attack').text('MISS!!');
-		$('#attack').prop('disabled', true);
-		setTimeout(function() {
-			$('#attack').text('Attack');
-		    $('#attack').prop('disabled', false);
-    }, (yourSpeed))
-	
-	} else {
-
-	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
-	audioAttack.play();
-	
-	enemyPlayer.health = enemyPlayer.health - (newPlayer.attack + newPlayer.type.strengthBonus);
-
-    $('#enemyHealth').val(enemyPlayer.health);
-    $('#attack').prop('disabled', true);
-    setTimeout(function() {
-      $('#attack').prop('disabled', false);
-    }, yourSpeed)
-
-	}
-	accuracyCounter++;
-}
-
-function playerOneAttack() {
-	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
-	audioAttack.play();
-
-	var playerOneSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
-	
-	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
-
-    $('#enemyHealth2').val(enemyPlayer.health);
-    $('#attack1').prop('disabled', true);
-    setTimeout(function() {
-      $('#attack1').prop('disabled', false);
-    }, playerOneSpeed)
-
-
-  $('.battle-screen-2').addClass('battle-screen-hit');
-  setTimeout(function () {
-    $('.battle-screen-2').removeClass('battle-screen-hit');
-      endGame();
-
-  }, 200);
-
-    endGame();
-}
-
-function playerTwoAttack() {
-	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
-	audioAttack.play();
-
-	var playerTwoSpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
-	
-	newPlayer.health = newPlayer.health - enemyPlayer.attack;
-
-    $('#health2').val(newPlayer.health);
-    $('#attack2').prop('disabled', true);
-    setTimeout(function() {
-      $('#attack2').prop('disabled', false);
-    }, playerTwoSpeed)
-
-
-  $('.battle-screen-1').addClass('battle-screen-hit');
-  setTimeout(function () {
-    $('.battle-screen-1').removeClass('battle-screen-hit');
-      endGame();
-
-  }, 200);
-
-    endGame();
-}
-
-
-
-$('#attack').click(function (e) {
-
-	userAttack();
-})
-
-$('#attack1').click(function (e) {
-
-	playerOneAttack();
-
-})
-
-$('#attack2').click(function (e) {
-
-	playerTwoAttack();
-
-})
 
 
 function battle () {
@@ -564,6 +465,65 @@ function enemyAttack() {
 
 }
 
+$('#attack').click(function (e) {
+
+	userAttack();
+})
+
+
+// 2 PLAYER BATTLE and ATTACKS
+
+
+function playerOneAttack() {
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
+
+	var playerOneSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
+	
+	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
+
+    $('#enemyHealth2').val(enemyPlayer.health);
+    $('#attack1').prop('disabled', true);
+    setTimeout(function() {
+      $('#attack1').prop('disabled', false);
+    }, playerOneSpeed)
+
+
+  $('.battle-screen-2').addClass('battle-screen-hit');
+  setTimeout(function () {
+    $('.battle-screen-2').removeClass('battle-screen-hit');
+      endGame();
+
+  }, 200);
+
+    endGame();
+}
+
+function playerTwoAttack() {
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
+
+	var playerTwoSpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
+	
+	newPlayer.health = newPlayer.health - enemyPlayer.attack;
+
+    $('#health2').val(newPlayer.health);
+    $('#attack2').prop('disabled', true);
+    setTimeout(function() {
+      $('#attack2').prop('disabled', false);
+    }, playerTwoSpeed)
+
+
+  $('.battle-screen-1').addClass('battle-screen-hit');
+  setTimeout(function () {
+    $('.battle-screen-1').removeClass('battle-screen-hit');
+      endGame();
+
+  }, 200);
+
+    endGame();
+}
+
 
 function battleTwo () {
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
@@ -608,3 +568,15 @@ $(document).keypress(function (e) {
 })
 
 }
+
+$('#attack1').click(function (e) {
+
+	playerOneAttack();
+
+})
+
+$('#attack2').click(function (e) {
+
+	playerTwoAttack();
+
+})
