@@ -31,13 +31,10 @@ $('#battleground-2').hide();
 reset();
 
 $('button').click(function (e) {
-	if ($('body').hasClass('battle-body')) {
-		var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
-		audioAttack.play();
-	} else {
-		var audio = new Audio('http://cd.textfiles.com/cdaction/cdaction24b/Q2/SPLASH/WAV/BTNX.WAV');
-		audio.play();
-	}
+		
+	var audio = new Audio('http://cd.textfiles.com/cdaction/cdaction24b/Q2/SPLASH/WAV/BTNX.WAV');
+	audio.play();
+
 })
 
 $(document).ready(function () {
@@ -179,6 +176,16 @@ $('#android-button-2').click(function (e) {
 	$('.controller-2').hide();
 	$('.droid-2').hide();
 	$('.android-2').show();
+})
+
+$('.robot-types').click(function(e) {
+	var audio = new Audio('https://freesound.org/data/previews/256/256543_1490240-lq.mp3');
+	audio.play();
+})
+
+$('.robot-types-2').click(function(e) {
+	var audio = new Audio('https://freesound.org/data/previews/256/256543_1490240-lq.mp3');
+	audio.play();
 })
 
 // mouseover to show robot type attributes
@@ -330,6 +337,9 @@ function userAttack() {
     }, (yourSpeed))
 	
 	} else {
+
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
 	
 	enemyPlayer.health = enemyPlayer.health - (newPlayer.attack + newPlayer.type.strengthBonus);
 
@@ -344,6 +354,9 @@ function userAttack() {
 }
 
 function playerOneAttack() {
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
+
 	var playerOneSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
 	
 	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
@@ -366,6 +379,9 @@ function playerOneAttack() {
 }
 
 function playerTwoAttack() {
+	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+	audioAttack.play();
+
 	var playerTwoSpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
 	
 	newPlayer.health = newPlayer.health - enemyPlayer.attack;
