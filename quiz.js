@@ -30,6 +30,16 @@ $('#battleground-2').hide();
 }
 reset();
 
+$('button').click(function (e) {
+	if ($('body').hasClass('battle-body')) {
+		var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
+		audioAttack.play();
+	} else {
+		var audio = new Audio('http://cd.textfiles.com/cdaction/cdaction24b/Q2/SPLASH/WAV/BTNX.WAV');
+		audio.play();
+	}
+})
+
 $(document).ready(function () {
 	$('#player-names').show('slow');
 	$('#main-header-container').show('slow');
@@ -177,9 +187,7 @@ $('.robot-types').mouseover(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     var hoverRobot = new Battle.Dome[newTypeText];
-
-    	
-    	$('.type-info').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+	$('.type-info').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
     								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
     								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
     
@@ -198,8 +206,7 @@ $('.robot-types-2').mouseover(function (e) {
     var typeText = this.innerText.toLowerCase();
     var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
     var hoverRobot = new Battle.Dome[newTypeText];
-    	
-    	$('.type-info-2').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    $('.type-info-2').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
     								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
     								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
     
@@ -474,11 +481,13 @@ function enemyAttack() {
 
 }());
 
-$(document).keypress(function (e) { 
-	if (e.keyCode === 32) {
-		userAttack();
-  	}	
-})
+
+	$(document).keypress(function (e) { 
+		if (e.keyCode === 32) {
+			if ($('#attack').prop('disabled', true))
+				userAttack();
+  			} 
+	})
 
 }
 

@@ -17,7 +17,7 @@ body {
  }
 
 #main-header {
-	text-align: center;
+	/*text-align: center;*/
 	font-size: 80px;
 	letter-spacing: 9px;
 	color: white;
@@ -26,6 +26,7 @@ body {
 
 #main-header-container {
 	background-color: rgba(0,0,0,.8);
+	text-align: center;
 }
 
 #wrapper {
@@ -213,11 +214,13 @@ label {
 #choose-class {
 	font-size: 22px;
 	letter-spacing: 2px;
+	margin-top: 4px;
 }
 
 #choose-class-2 {
 	font-size: 22px;
 	letter-spacing: 2px;
+	margin-top: 7px;
 }
 
 #choose-enemy {
