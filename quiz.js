@@ -26,7 +26,7 @@ $('#enter').hide();
 $('#choose-enemy').hide();
 $('#game-over').hide();
 $('#battleground-2').hide();
-// $('#versus-container').hide();
+$('#versus-container').hide();
 
 }
 reset();
@@ -50,9 +50,6 @@ $(document).ready(function () {
 	$('#main-header-container').show('slow');
 })
 
-// $('button').mouseover(function (e) {
-// 	$(this).addClass('hover-button');
-// });
 
 // 1 Player 
 
@@ -80,8 +77,9 @@ $('#choose-class').click(function (e) {
 	enemyPlayerName = $('#robot2').val();
 	newPlayer = new Battle.Combatant.Robot(newPlayerName);
 	enemyPlayer = new Battle.Combatant.RobotTwo(enemyPlayerName);
+	$('.player-s').html(`${newPlayer.playerName} Select Robot`)
+	$('.player-2-s').html(`${enemyPlayer.playerName} Select Robot`)
 	twoPlayer = false;
-	console.log(twoPlayer)
 })
 
 $('#choose-class-2').click(function (e) {
@@ -89,6 +87,8 @@ $('#choose-class-2').click(function (e) {
 	enemyPlayerName = $('#robot2').val();
 	newPlayer = new Battle.Combatant.Robot(newPlayerName);
 	enemyPlayer = new Battle.Combatant.Robot(enemyPlayerName);
+	$('.player-s').html(`${newPlayer.playerName} Select Robot`)
+	$('.player-2-s').html(`${enemyPlayer.playerName} Select Robot`)
 	twoPlayer = true;
 })
 
@@ -249,10 +249,30 @@ $('.robot-types-2').mouseleave(function(e) {
     								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
 })
 
+$('.robot-types').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+	$('.type-info-selected').html(`<div class="col-md-3">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+    
+  })
+
+$('.robot-types-2').click(function (e) {
+    var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+    $('.type-info-2-selected').html(`<div class="col-md-3">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
+})
+
 $('#enter').click(function (e){
 	if (twoPlayer === false) {
 	// $('#choose-robot-class-2').hide('slow');
 	// $('#main-header-container').hide('slow');
+
 	
 	$('#choose-robot-class-2').fadeTo(1000, .01,  function () {
 		$('#choose-robot-class-2').hide('slow');
@@ -270,6 +290,7 @@ $('#enter').click(function (e){
 
 
 	setTimeout(function () {
+		$('#versus-container').show();
 		$('#versus').html('<span>3</span>')
 		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
 			setTimeout(function () {
@@ -302,14 +323,19 @@ $('#enter').click(function (e){
 		$('#versus').html('<span>GET READY...</span>');
 
 		setTimeout(function () {
+		$('#versus-container').show();
+		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
 		$('#versus').html('<span>3</span>')
 			setTimeout(function () {
+			new Audio('https://freesound.org/data/previews/130/130727_214099-lq.mp3').play();
 			$('#versus').html('<span>2</span>')
 			}, 1000);
 			setTimeout(function () {
+				new Audio('https://freesound.org/data/previews/130/130713_214099-lq.mp3').play();
 				$('#versus').html('<span>1</span>')
 			}, 2000)
 			setTimeout(function () {
+				new Audio('https://freesound.org/data/previews/276/276254_5299216-lq.mp3').play();
 				$('#versus').html('<span>FIGHT!</span>')
 			}, 3000);
 			setTimeout(function () {
@@ -326,7 +352,7 @@ function endGame () {
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
-  		$('.game-end').html(`${enemyPlayer.playerName} Wins<br>You Lose`);
+  		$('.game-end').html(`${enemyPlayer.playerName} (${enemyPlayer.type.name}) Defeated ${newPlayer.playerName} (${newPlayer.type.name})`);
   		$('#game-over').show('slow');
   	}, 200)
 
@@ -522,7 +548,7 @@ function enemyAttack() {
    	setTimeout(function() {
       enemyAttack();
       loop();  
-    }, enemySpeed + rand); } else {
+    }, (enemySpeed - 1000) + rand); } else {
       endGame();
    }
 
