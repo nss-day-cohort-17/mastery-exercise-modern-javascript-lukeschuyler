@@ -33,10 +33,17 @@ reset();
 
 // button click audio
 
+$('button').mouseover(function(e) {
+	var audio = new Audio('https://freesound.org/data/previews/43/43143_382148-lq.mp3');
+	audio.play();
+})
+
 $('button').click(function (e) {	
 	var audio = new Audio('http://cd.textfiles.com/cdaction/cdaction24b/Q2/SPLASH/WAV/BTNX.WAV');
 	audio.play();
 })
+
+// initial show and hide
 
 $(document).ready(function () {
 	myAudio = new Audio('https://freesound.org/data/previews/347/347741_4322723-lq.mp3'); 
@@ -288,6 +295,8 @@ $('#enter').click(function (e){
 	setTimeout(function () {
 		$('#versus-container').show();
 		$('#versus').html('<span>3</span>')
+		myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
+		myAudio.play();
 		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
 			setTimeout(function () {
 			new Audio('https://freesound.org/data/previews/130/130727_214099-lq.mp3').play();
@@ -321,6 +330,8 @@ $('#enter').click(function (e){
 		setTimeout(function () {
 		$('#versus-container').show();
 		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
+		myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
+		myAudio.play();
 		$('#versus').html('<span>3</span>')
 			setTimeout(function () {
 			new Audio('https://freesound.org/data/previews/130/130727_214099-lq.mp3').play();
@@ -408,9 +419,6 @@ function userAttack() {
 
 function battle () {
 
-myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
-myAudio.play();
-
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
 console.log(newPlayer)
@@ -439,37 +447,28 @@ $('#battle-screen-bottom').html(yourInfo)
 var enemyAccuracy = 1;
 let enemyAudio;
 function enemyAttack() {
-
-	var rand = Math.round((Math.random() * 5) + 2)
+	var rand = Math.round((Math.random() * 5) + 2);
 
 	if ((enemyAccuracy % rand) === 0) {
-		
 	$('.battle-screen').addClass('battle-screen-miss');
-  setTimeout(function () {
-    $('.battle-screen').removeClass('battle-screen-miss');
-      endGame();
-
-  }, 200);
-		
+  	setTimeout(function () {
+    	$('.battle-screen').removeClass('battle-screen-miss');
+      	endGame();
+  	}, 200);
+	
 	} else {
 
 	// enemyAudio = new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3');
 	// enemyAudio.play();
- 
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {
     $('.battle-screen').removeClass('battle-screen-hit');
       endGame();
 
   }, 200);
-
-
-  newPlayer.health = newPlayer.health - (enemyPlayer.attack + enemyPlayer.type.strengthBonus);
-
-	$('#health').val(newPlayer.health);
-
+  		newPlayer.health = newPlayer.health - (enemyPlayer.attack + enemyPlayer.type.strengthBonus);
+		$('#health').val(newPlayer.health);
 	}
-
 	enemyAccuracy++;
 }
 
@@ -485,19 +484,15 @@ function enemyAttack() {
    }
 
 }());
-
-
 	$(document).keypress(function (e) { 
 		if (e.keyCode === 32) {
 			if ($('#attack').prop('disabled', true))
 				userAttack();
   			} 
-	})
-
+		})
 }
 
 $('#attack').click(function (e) {
-
 	userAttack();
 })
 
@@ -508,34 +503,26 @@ $('#attack').click(function (e) {
 function playerOneAttack() {
 	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
 	audioAttack.play();
-
 	var playerOneSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
-	
 	enemyPlayer.health = enemyPlayer.health - newPlayer.attack;
-
     $('#enemyHealth2').val(enemyPlayer.health);
     $('#attack1').prop('disabled', true);
     setTimeout(function() {
       $('#attack1').prop('disabled', false);
     }, playerOneSpeed)
 
-
-  $('.battle-screen-2').addClass('battle-screen-hit');
-  setTimeout(function () {
-    $('.battle-screen-2').removeClass('battle-screen-hit');
+  	$('.battle-screen-2').addClass('battle-screen-hit');
+  	setTimeout(function () {
+    	$('.battle-screen-2').removeClass('battle-screen-hit');
       endGame();
-
-  }, 200);
-
-    endGame();
+	 }, 200);
+    // endGame();
 }
 
 function playerTwoAttack() {
 	var audioAttack = new Audio('https://freesound.org/data/previews/73/73214_100848-lq.mp3');
 	audioAttack.play();
-
 	var playerTwoSpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
-	
 	newPlayer.health = newPlayer.health - enemyPlayer.attack;
 
     $('#health2').val(newPlayer.health);
@@ -544,15 +531,12 @@ function playerTwoAttack() {
       $('#attack2').prop('disabled', false);
     }, playerTwoSpeed)
 
-
-  $('.battle-screen-1').addClass('battle-screen-hit');
-  setTimeout(function () {
-    $('.battle-screen-1').removeClass('battle-screen-hit');
-      endGame();
-
-  }, 200);
-
-    endGame();
+  	$('.battle-screen-1').addClass('battle-screen-hit');
+  	setTimeout(function () {
+    	$('.battle-screen-1').removeClass('battle-screen-hit');
+      	endGame();
+  	}, 200);
+ 	// endGame();
 }
 
 
@@ -579,37 +563,31 @@ yourInfo = `<div id="yourInfo" class="col-md-4">
 				<progress id="health2" value="${newPlayer.health}" max="${newPlayer.health}"></progress>
 			</div>`
 
-
 $('#battle-screen-bottom-1').html(yourInfo)
 $('#battle-screen-bottom-2').html(enemyInfo)
-
-
-
 endGame();
+
+// keyboard keys for attacking
 
 $(document).keypress(function (e) { 
 	if (e.keyCode === 97) {
-		playerOneAttack();
+		$('#attack1').click();
   	}	
 })
 
 
 $(document).keypress(function (e) { 
 	if (e.keyCode === 108) {
-		playerTwoAttack();
+		$('#attack2').click();
   	}	
 })
 
 }
 
 $('#attack1').click(function (e) {
-
 	playerOneAttack();
-
 })
 
 $('#attack2').click(function (e) {
-
 	playerTwoAttack();
-
 })
