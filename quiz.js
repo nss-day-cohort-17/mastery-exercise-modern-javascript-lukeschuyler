@@ -5,6 +5,7 @@ var enemyPlayerName;
 var enemyInfo;
 var yourInfo;
 var twoPlayer = false;
+let myAudio;
 
 // JQUERY STYLING 
 
@@ -38,6 +39,13 @@ $('button').click(function (e) {
 })
 
 $(document).ready(function () {
+	myAudio = new Audio('https://freesound.org/data/previews/347/347741_4322723-lq.mp3'); 
+	myAudio.addEventListener('ended', function() {
+    	this.currentTime = 0;
+    	this.play();
+	}, false);
+	myAudio.play();
+	
 	$('#player-names').show('slow');
 	$('#main-header-container').show('slow');
 })
@@ -181,11 +189,23 @@ $('#android-button-2').click(function (e) {
 $('.robot-types').click(function(e) {
 	var audio = new Audio('https://freesound.org/data/previews/256/256543_1490240-lq.mp3');
 	audio.play();
+	var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+	$('.type-info').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
 })
 
 $('.robot-types-2').click(function(e) {
 	var audio = new Audio('https://freesound.org/data/previews/256/256543_1490240-lq.mp3');
 	audio.play();
+	var typeText = this.innerText.toLowerCase();
+    var newTypeText = typeText.charAt(0).toUpperCase() + typeText.slice(1);
+    var hoverRobot = new Battle.Dome[newTypeText];
+    $('.type-info-2').html(`<div class="col-md-3 col-md-offset-1">${newTypeText}:<br> Health: ${Battle.Dome[newTypeText].prototype.healthBonus + hoverRobot.healthBonus + 90} <br>
+    								Strength: ${Battle.Dome[newTypeText].prototype.strengthBonus + 90 + hoverRobot.strengthBonus} <br>
+    								CPU: ${Battle.Dome[newTypeText].prototype.CPUBonus + hoverRobot.CPUBonus}</div>`)
 })
 
 // mouseover to show robot type attributes
@@ -251,13 +271,17 @@ $('#enter').click(function (e){
 
 	setTimeout(function () {
 		$('#versus').html('<span>3</span>')
+		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
 			setTimeout(function () {
+			new Audio('https://freesound.org/data/previews/130/130727_214099-lq.mp3').play();
 			$('#versus').html('<span>2</span>')
 			}, 1000);
 			setTimeout(function () {
+			new Audio('https://freesound.org/data/previews/130/130713_214099-lq.mp3').play();
 				$('#versus').html('<span>1</span>')
 			}, 2000)
 			setTimeout(function () {
+				new Audio('https://freesound.org/data/previews/276/276254_5299216-lq.mp3').play();
 				$('#versus').html('<span>FIGHT!</span>')
 			}, 3000);
 			setTimeout(function () {
@@ -298,6 +322,7 @@ $('#enter').click(function (e){
 function endGame () {
   if (newPlayer.health <= 0) {
   	$('body').addClass('overlay');
+  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').pause();
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -308,6 +333,7 @@ function endGame () {
 
   } else if (enemyPlayer.health <= 0) {
   	$('body').addClass('overlay');
+  	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').pause();
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -425,6 +451,9 @@ $('#attack2').click(function (e) {
 
 function battle () {
 
+myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
+myAudio.play();
+
 newPlayer.health = newPlayer.health + newPlayer.type.healthBonus;
 enemyPlayer.health = enemyPlayer.health + enemyPlayer.type.healthBonus;
 console.log(newPlayer)
@@ -466,6 +495,8 @@ function enemyAttack() {
   }, 200);
 		
 	} else {
+
+	new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3').play();
  
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {

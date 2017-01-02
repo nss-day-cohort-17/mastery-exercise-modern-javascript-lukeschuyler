@@ -14,6 +14,7 @@ Battle.Dome.Droid = function () {
 	this.healthBonus = 10;
 	this.strengthBonus = -5;
 	this.CPUBonus = 50;
+	this.wheels = true;
 }
 
 Battle.Dome.Droid.prototype = new Battle.Dome.RobotClass();
@@ -94,7 +95,7 @@ Battle.Dome.Controller = function () {
 	this.healthBonus = -15;
 	this.strengthBonus = -1;
 	this.CPUBonus = 40;
-	this.limbs = false;
+	this.body = false;
 }
 
 Battle.Dome.Controller.prototype = new Battle.Dome.RobotClass();
