@@ -516,13 +516,13 @@ function enemyAttack() {
 }
 
 (function loop() {
-   // var rand = Math.round(Math.random() * (3000 - 500)) + 1000;
+   var rand = Math.round(Math.random() * 1500);
    var enemySpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
    if (enemyPlayer.health > 0) {
    	setTimeout(function() {
       enemyAttack();
       loop();  
-    }, enemySpeed); } else {
+    }, enemySpeed + rand); } else {
       endGame();
    }
 
