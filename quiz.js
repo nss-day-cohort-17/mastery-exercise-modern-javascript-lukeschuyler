@@ -6,6 +6,7 @@ var enemyInfo;
 var yourInfo;
 var twoPlayer = false;
 let myAudio;
+let enemyAudio;
 
 // JQUERY STYLING 
 
@@ -288,12 +289,14 @@ $('#enter').click(function (e){
 	$('body').fadeIn('slow', .8, function(){
 		$('body').removeClass('player-body');
 		$('body').addClass('battle-body');
+		$('#versus-container').show();
 		$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
 		$('#versus').html('<span>GET READY...</span>');
+		$('#controls').html('<div class="controls col-md-12">Press Spacebar to Attack!</div>')
 	})
 
 	setTimeout(function () {
-		$('#versus-container').show();
+		
 		$('#versus').html('<span>3</span>')
 		myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
 		myAudio.play();
@@ -324,11 +327,12 @@ $('#enter').click(function (e){
 		$('body').addClass('battle-body');
 		})
 		
+		$('#versus-container').show();
 		$('#vs').html(newPlayer.playerName + ' vs ' + enemyPlayer.playerName)
 		$('#versus').html('<span>GET READY...</span>');
-
+		$('#controls').html('<div class="controls-2 col-md-6">(Player 1): Press A to Attack!</div><div class="controls-2 col-md-6">(Player 2): Press L to Attack!</div>');
 		setTimeout(function () {
-		$('#versus-container').show();
+		
 		new Audio('https://freesound.org/data/previews/130/130717_214099-lq.mp3').play();
 		myAudio = new Audio ('https://freesound.org/data/previews/369/369251_6456158-lq.mp3');
 		myAudio.play();
@@ -357,7 +361,7 @@ $('#enter').click(function (e){
 function endGame () {
   if (newPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	enemyAudio = ''
+
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -368,7 +372,7 @@ function endGame () {
 
   } else if (enemyPlayer.health <= 0) {
   	$('body').addClass('overlay');
-  	enemyAudio = ''
+
   	setTimeout(function () {
   		$('#battleground').hide('slow');
   		$('#battleground-2').hide('slow');
@@ -445,10 +449,8 @@ $('#battle-screen-top').html(enemyInfo);
 $('#battle-screen-bottom').html(yourInfo)
 
 var enemyAccuracy = 1;
-let enemyAudio;
 function enemyAttack() {
 	var rand = Math.round((Math.random() * 5) + 2);
-
 	if ((enemyAccuracy % rand) === 0) {
 	$('.battle-screen').addClass('battle-screen-miss');
   	setTimeout(function () {
@@ -458,8 +460,8 @@ function enemyAttack() {
 	
 	} else {
 
-	// enemyAudio = new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3');
-	// enemyAudio.play();
+	enemyAudio = new Audio('https://freesound.org/data/previews/360/360443_6512973-lq.mp3');
+	enemyAudio.play();
   $('.battle-screen').addClass('battle-screen-hit');
   setTimeout(function () {
     $('.battle-screen').removeClass('battle-screen-hit');
@@ -475,10 +477,10 @@ function enemyAttack() {
 (function loop() {
    var rand = Math.round(Math.random() * 1500);
    var enemySpeed = (1 / ((enemyPlayer.CPU + enemyPlayer.type.CPUBonus) / 100)) * 1000;
-   if (enemyPlayer.health > 0) {
+   if (enemyPlayer.health > 0 && newPlayer.health > 0) {
    	setTimeout(function() {
       enemyAttack();
-      loop();  
+      loop(); 
     }, (enemySpeed - 1000) + rand); } else {
       endGame();
    }

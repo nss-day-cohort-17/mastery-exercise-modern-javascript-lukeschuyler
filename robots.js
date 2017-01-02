@@ -42,8 +42,8 @@ Battle.Dome.Spud.prototype = new Battle.Dome.Droid();
 Battle.Dome.Booker = function () {
 	this.name = "Booker"
 	this.healthBonus = 50;
-	this.strengthBonus = 3;
-	this.CPUBonus = -50;
+	this.strengthBonus = 4;
+	this.CPUBonus = -30;
 }
 
 Battle.Dome.Booker.prototype = new Battle.Dome.Droid();
@@ -74,7 +74,7 @@ Battle.Dome.Paranoid.prototype = new Battle.Dome.Android();
 Battle.Dome.Entity = function () {
 	this.name = "Entity"
 	this.healthBonus = -20;
-	this.strengthBonus = 7;
+	this.strengthBonus = 4;
 	this.CPUBonus = 10;
 }
 
