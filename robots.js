@@ -34,14 +34,14 @@ Battle.Dome.Spud = function () {
 	this.name = "Spud"
 	this.healthBonus = 10;
 	this.strengthBonus = -3;
-	this.CPUBonus = 80;
+	this.CPUBonus = 120;
 }
 
 Battle.Dome.Spud.prototype = new Battle.Dome.Droid();
 
 Battle.Dome.Booker = function () {
 	this.name = "Booker"
-	this.healthBonus = 50;
+	this.healthBonus = 20;
 	this.strengthBonus = 4;
 	this.CPUBonus = -30;
 }

@@ -393,9 +393,12 @@ var accuracyCounter = 1;
 
 function userAttack() {
 
+	var rand = Math.round(Math.random() * 7);
+	rand = rand - (newPlayer.type.CPUBonus / 10);
+	console.log(rand)
 	var yourSpeed = (1 / ((newPlayer.CPU + newPlayer.type.CPUBonus) / 100)) * 1000;
 
-	if ((accuracyCounter % 5) === 0) {
+	if (accuracyCounter % (rand - (newPlayer.type.CPUBonus / 10)) === 0) {
 		$('#attack').text('MISS!!');
 		$('#attack').prop('disabled', true);
 		setTimeout(function() {

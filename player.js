@@ -5,6 +5,7 @@ Battle.Combatant = {};
 
 
 Battle.Combatant.Robot = function(name) {
+var randomAttack = Math.round(Math.random() * 2)
 var randomNumber = Math.round(Math.random() * 30);
   this.type = null;
   this.class = null;
@@ -16,6 +17,7 @@ var randomNumber = Math.round(Math.random() * 30);
 }
 
 Battle.Combatant.RobotTwo = function(name) {
+var randomAttack = Math.round(Math.random() * 2)
 var randomNumber = Math.round(Math.random() * 30);
   this.type = null;
   this.class = null;
